@@ -168,7 +168,7 @@ nav .nav-links a:hover { color: var(--accent); }
   border-radius: var(--radius);
   padding: 28px;
   transition: all 0.3s;
-  text-decoration: none; color: var(--text);
+  cursor: pointer;
 }
 .pre-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
 .pre-card .icon {
@@ -178,6 +178,26 @@ nav .nav-links a:hover { color: var(--accent); }
 }
 .pre-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
 .pre-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.pre-card .start-learning {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--accent); font-weight: 600; font-size: 0.88rem;
+  margin-top: 14px; transition: gap 0.2s;
+}
+.pre-card:hover .start-learning { gap: 10px; }
+.pre-card-content {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease;
+  border-top: 0px solid var(--border);
+}
+.pre-card.expanded .pre-card-content {
+  max-height: 600px; padding-top: 16px; margin-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.pre-card-content ul { list-style: none; padding: 0; }
+.pre-card-content ul li {
+  padding: 8px 0; font-size: 0.88rem; color: var(--text-muted);
+  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+}
+.pre-card-content ul li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
 .icon-green { background: var(--accent-light); }
 .icon-blue { background: #dbeafe; }
 .icon-rose { background: var(--rose-light); }
@@ -249,8 +269,9 @@ nav .nav-links a:hover { color: var(--accent); }
   border-radius: var(--radius);
   padding: 24px;
   transition: all 0.3s;
+  cursor: pointer;
 }
-.hub-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.hub-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--purple); }
 .hub-card .hub-icon {
   width: 42px; height: 42px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
@@ -259,6 +280,40 @@ nav .nav-links a:hover { color: var(--accent); }
 .hub-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
 .hub-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
 .hub-card .meta { font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 12px; }
+.hub-card .explore-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--purple); font-weight: 600; font-size: 0.85rem;
+  margin-top: 14px; transition: gap 0.2s;
+}
+.hub-card:hover .explore-btn { gap: 10px; }
+.hub-card-topics {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease;
+  border-top: 0px solid var(--border);
+}
+.hub-card.expanded .hub-card-topics {
+  max-height: 400px; padding-top: 14px; margin-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.hub-card-topics ul { list-style: none; padding: 0; }
+.hub-card-topics ul li {
+  padding: 6px 0; font-size: 0.84rem; color: var(--text-muted);
+  display: flex; align-items: center; gap: 8px;
+}
+.hub-card-topics ul li .num {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: var(--purple-light); color: var(--purple);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+}
+.hub-card .quiz-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--purple); color: white;
+  padding: 8px 16px; border-radius: 50px;
+  font-weight: 600; font-size: 0.8rem;
+  border: none; cursor: pointer; margin-top: 12px;
+  transition: all 0.2s;
+}
+.hub-card .quiz-btn:hover { background: #6d28d9; transform: translateY(-1px); }
 
 /* TOPICS ACCORDION */
 .topics-section { padding: 0 24px 80px; }
@@ -275,14 +330,34 @@ nav .nav-links a:hover { color: var(--accent); }
   display: flex; align-items: center; gap: 14px;
   cursor: pointer; font-weight: 600; font-size: 0.95rem;
   transition: background 0.2s;
+  user-select: none;
 }
 .topic-header:hover { background: #fafaf9; }
+.topic-header .chevron {
+  margin-left: auto; transition: transform 0.3s; font-size: 0.8rem; color: var(--text-muted);
+}
+.topic-item.expanded .topic-header .chevron { transform: rotate(180deg); }
+.topic-item.expanded .topic-header { background: #fafaf9; }
 .topic-num {
   width: 30px; height: 30px; border-radius: 8px;
   background: var(--accent-light); color: var(--accent-dark);
   display: flex; align-items: center; justify-content: center;
   font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
 }
+.topic-content {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.topic-item.expanded .topic-content {
+  max-height: 500px;
+}
+.topic-content-inner {
+  padding: 0 20px 20px;
+  font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
+}
+.topic-content-inner ul { margin: 10px 0 0 0; list-style: none; }
+.topic-content-inner ul li { padding: 4px 0; display: flex; align-items: flex-start; gap: 8px; }
+.topic-content-inner ul li::before { content: '•'; color: var(--accent); font-weight: 700; }
 
 /* HOOK GALLERY */
 .hook-gallery { padding: 80px 24px; }
@@ -316,7 +391,80 @@ nav .nav-links a:hover { color: var(--accent); }
 .hook-card-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
 .hook-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
 .hook-tags span { font-size: 0.72rem; padding: 3px 10px; border-radius: 50px; background: #f5f5f4; color: var(--text-muted); }
-.hook-read { font-size: 0.82rem; color: var(--text-muted); }
+.hook-read-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--accent); font-weight: 600; font-size: 0.85rem;
+  cursor: pointer; border: none; background: none; padding: 0;
+  transition: gap 0.2s;
+}
+.hook-read-btn:hover { gap: 10px; color: var(--accent-dark); }
+.hook-expanded {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.hook-card.expanded .hook-expanded { max-height: 800px; }
+.hook-expanded-inner {
+  padding-top: 14px; margin-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.88rem; color: var(--text-muted); line-height: 1.7;
+}
+.hook-expanded-inner p { margin-bottom: 10px; }
+.hook-expanded-inner h4 { color: var(--text); font-size: 0.92rem; margin: 14px 0 6px; }
+
+/* QUIZ MODAL */
+.quiz-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 200; display: none; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.quiz-overlay.active { display: flex; }
+.quiz-modal {
+  background: var(--surface); border-radius: var(--radius);
+  padding: 36px; max-width: 560px; width: 100%;
+  max-height: 80vh; overflow-y: auto;
+  position: relative;
+}
+.quiz-modal h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+.quiz-modal .quiz-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; }
+.quiz-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; font-size: 1.5rem;
+  cursor: pointer; color: var(--text-muted); line-height: 1;
+}
+.quiz-close:hover { color: var(--text); }
+.quiz-question { margin-bottom: 24px; }
+.quiz-question .q-num { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+.quiz-question .q-text { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  cursor: pointer; font-size: 0.88rem;
+  transition: all 0.2s; background: var(--surface);
+}
+.quiz-option:hover { border-color: var(--accent); background: var(--accent-light); }
+.quiz-option.selected { border-color: var(--accent); background: var(--accent-light); }
+.quiz-option.correct { border-color: var(--accent); background: var(--accent-light); color: var(--accent-dark); }
+.quiz-option.wrong { border-color: var(--rose); background: var(--rose-light); color: var(--rose); }
+.quiz-option .letter {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #f5f5f4; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.78rem; flex-shrink: 0;
+}
+.quiz-option.selected .letter { background: var(--accent); color: white; }
+.quiz-option.correct .letter { background: var(--accent); color: white; }
+.quiz-option.wrong .letter { background: var(--rose); color: white; }
+.quiz-submit {
+  margin-top: 20px; width: 100%;
+  justify-content: center; padding: 14px;
+}
+.quiz-result {
+  text-align: center; padding: 20px 0;
+}
+.quiz-result .score { font-size: 3rem; font-weight: 900; color: var(--accent); }
+.quiz-result .score-text { font-size: 1rem; color: var(--text-muted); margin-top: 8px; }
+.quiz-result .score-msg { font-size: 1.1rem; font-weight: 700; margin-top: 16px; }
 
 /* STUDY TOOLS */
 .study-tools { padding: 80px 24px; }
@@ -484,26 +632,66 @@ footer .footer-bottom {
     <h2 class="section-title">Pre-IGCSE Biology Fun</h2>
     <p class="section-subtitle">Start your biology adventure! Learn about the amazing world of living things in a fun and easy way. Perfect for young scientists from around the world!</p>
     <div class="pre-igcse-grid">
-      <a href="#" class="pre-card">
+      <div class="pre-card" onclick="togglePreCard(this)">
         <div class="icon icon-green">&#x1F331;</div>
         <h3>Amazing Plants</h3>
         <p>Discover how plants grow, make food from sunlight, and help us breathe!</p>
-      </a>
-      <a href="#" class="pre-card">
+        <div class="start-learning">Start Learning &rarr;</div>
+        <div class="pre-card-content">
+          <ul>
+            <li>Plants make their own food using sunlight, water, and carbon dioxide &mdash; this is called <strong>photosynthesis</strong>!</li>
+            <li>The tallest tree in the world is a coast redwood called Hyperion, standing at over 115 metres tall.</li>
+            <li>Some plants can actually move! The Venus flytrap snaps shut in less than a second to catch insects.</li>
+            <li>Plants release oxygen as a by-product of photosynthesis &mdash; that's the air we breathe!</li>
+            <li>The roots of a plant can grow incredibly deep to find water. Some desert plants have roots over 50 metres long.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pre-card" onclick="togglePreCard(this)">
         <div class="icon icon-blue">&#x1F98B;</div>
         <h3>Incredible Animals</h3>
         <p>Learn about different animals, how they live, eat, and survive in nature!</p>
-      </a>
-      <a href="#" class="pre-card">
+        <div class="start-learning">Start Learning &rarr;</div>
+        <div class="pre-card-content">
+          <ul>
+            <li>A cheetah can run up to 112 km/h &mdash; that's faster than most cars on a highway!</li>
+            <li>Octopuses have three hearts and blue blood. Two hearts pump blood to the gills and one pumps it to the body.</li>
+            <li>Elephants are the only animals that can't jump, but they can communicate using vibrations through the ground.</li>
+            <li>The Arctic tern migrates from pole to pole each year &mdash; a round trip of about 70,000 km!</li>
+            <li>Dolphins sleep with one eye open and one half of their brain awake to watch for predators.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pre-card" onclick="togglePreCard(this)">
         <div class="icon icon-rose">&#x1F4AA;</div>
         <h3>Your Amazing Body</h3>
         <p>Explore how your body works &mdash; from your heart to your brain to your bones!</p>
-      </a>
-      <a href="#" class="pre-card">
+        <div class="start-learning">Start Learning &rarr;</div>
+        <div class="pre-card-content">
+          <ul>
+            <li>Your heart beats about 100,000 times a day, pumping blood through 96,000 km of blood vessels!</li>
+            <li>Your brain uses about 20% of all the energy your body produces &mdash; it's the hungriest organ.</li>
+            <li>Babies are born with about 300 bones, but adults only have 206 because some fuse together as you grow.</li>
+            <li>Your nose can detect over 1 trillion different smells &mdash; way more than anyone imagined!</li>
+            <li>Red blood cells live for about 120 days. Your body makes about 2 million new ones every second.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pre-card" onclick="togglePreCard(this)">
         <div class="icon icon-amber">&#x1F30D;</div>
         <h3>Our Living Planet</h3>
         <p>See how all living things connect in ecosystems around the world!</p>
-      </a>
+        <div class="start-learning">Start Learning &rarr;</div>
+        <div class="pre-card-content">
+          <ul>
+            <li>Rainforests cover only 6% of Earth's surface but contain more than half of all plant and animal species!</li>
+            <li>Coral reefs are called the &ldquo;rainforests of the sea&rdquo; because they support so much marine life.</li>
+            <li>A single teaspoon of soil can contain up to 1 billion bacteria &mdash; they help recycle nutrients for plants.</li>
+            <li>Ecosystems are all connected: if bees disappeared, about one-third of our food crops would be affected.</li>
+            <li>The Great Barrier Reef is so big it can be seen from space &mdash; it's over 2,300 km long!</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -543,45 +731,180 @@ footer .footer-bottom {
     <h2 class="section-title">The <span style="color:var(--purple)">IGCSE Hub</span></h2>
     <p class="section-subtitle">Comprehensive study guides with detailed explanations, exam tips, common mistakes to avoid, and practice quizzes for every topic.</p>
     <div class="hub-grid">
-      <div class="hub-card">
+      <div class="hub-card" onclick="toggleHubCard(this)">
         <div class="hub-icon icon-green">&#x1F9EC;</div>
         <h3>Cell Biology</h3>
         <p>Explore the building blocks of life, from cell structure to cellular processes.</p>
         <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+        <div class="explore-btn">Explore Topics &rarr;</div>
+        <div class="hub-card-topics">
+          <ul>
+            <li><span class="num">1</span> Cell Structure &amp; Organization</li>
+            <li><span class="num">2</span> Movement In &amp; Out of Cells</li>
+            <li><span class="num">3</span> Biological Molecules</li>
+            <li><span class="num">4</span> Enzymes &amp; Their Functions</li>
+            <li><span class="num">5</span> Plant Nutrition &amp; Photosynthesis</li>
+            <li><span class="num">6</span> Animal Nutrition &amp; Digestion</li>
+          </ul>
+          <button class="quiz-btn" onclick="event.stopPropagation(); openQuiz('cell')">&#x1F4DD; Take Cell Biology Quiz</button>
+        </div>
       </div>
-      <div class="hub-card">
+      <div class="hub-card" onclick="toggleHubCard(this)">
         <div class="hub-icon" style="background:#ede9fe">&#x1F9EC;</div>
         <h3>Genetics</h3>
         <p>Uncover the secrets of heredity, DNA, and genetic variation.</p>
         <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+        <div class="explore-btn">Explore Topics &rarr;</div>
+        <div class="hub-card-topics">
+          <ul>
+            <li><span class="num">1</span> DNA Structure &amp; Replication</li>
+            <li><span class="num">2</span> Protein Synthesis</li>
+            <li><span class="num">3</span> Mendelian Genetics</li>
+            <li><span class="num">4</span> Genetic Variation &amp; Mutation</li>
+            <li><span class="num">5</span> Inheritance Patterns</li>
+            <li><span class="num">6</span> Genetic Engineering</li>
+          </ul>
+          <button class="quiz-btn" onclick="event.stopPropagation(); openQuiz('genetics')">&#x1F4DD; Take Genetics Quiz</button>
+        </div>
       </div>
-      <div class="hub-card">
+      <div class="hub-card" onclick="toggleHubCard(this)">
         <div class="hub-icon icon-amber">&#x1F33F;</div>
         <h3>Ecology</h3>
         <p>Understand ecosystems, food chains, and environmental balance.</p>
         <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+        <div class="explore-btn">Explore Topics &rarr;</div>
+        <div class="hub-card-topics">
+          <ul>
+            <li><span class="num">1</span> Ecosystems &amp; Energy Flow</li>
+            <li><span class="num">2</span> Food Chains &amp; Webs</li>
+            <li><span class="num">3</span> Nutrient Cycles</li>
+            <li><span class="num">4</span> Population &amp; Community</li>
+            <li><span class="num">5</span> Human Impact on Environment</li>
+            <li><span class="num">6</span> Conservation &amp; Biodiversity</li>
+          </ul>
+          <button class="quiz-btn" onclick="event.stopPropagation(); openQuiz('ecology')">&#x1F4DD; Take Ecology Quiz</button>
+        </div>
       </div>
-      <div class="hub-card">
+      <div class="hub-card" onclick="toggleHubCard(this)">
         <div class="hub-icon icon-rose">&#x1FA7A;</div>
         <h3>Human Biology</h3>
         <p>Discover how the human body works, from organs to systems.</p>
         <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+        <div class="explore-btn">Explore Topics &rarr;</div>
+        <div class="hub-card-topics">
+          <ul>
+            <li><span class="num">1</span> Circulatory System</li>
+            <li><span class="num">2</span> Respiratory System</li>
+            <li><span class="num">3</span> Nervous System</li>
+            <li><span class="num">4</span> Excretion &amp; Homeostasis</li>
+            <li><span class="num">5</span> Reproduction</li>
+            <li><span class="num">6</span> Immune System &amp; Disease</li>
+          </ul>
+          <button class="quiz-btn" onclick="event.stopPropagation(); openQuiz('human')">&#x1F4DD; Take Human Biology Quiz</button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TOPICS -->
+<!-- TOPICS ACCORDION -->
 <section class="topics-section">
   <div class="container" style="text-align:center">
     <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:6px">&#x1F4CB; Cell Biology Study Guide Topics</h3>
+    <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:10px">Click on a topic to learn more</p>
     <div class="topics-list">
-      <div class="topic-item"><div class="topic-header"><span class="topic-num">1</span> Cell Structure &amp; Organization</div></div>
-      <div class="topic-item"><div class="topic-header"><span class="topic-num">2</span> Movement In &amp; Out of Cells</div></div>
-      <div class="topic-item"><div class="topic-header"><span class="topic-num">3</span> Biological Molecules</div></div>
-      <div class="topic-item"><div class="topic-header"><span class="topic-num">4</span> Enzymes &amp; Their Functions</div></div>
-      <div class="topic-item"><div class="topic-header"><span class="topic-num">5</span> Plant Nutrition &amp; Photosynthesis</div></div>
-      <div class="topic-item"><div class="topic-header"><span class="topic-num">6</span> Animal Nutrition &amp; Digestion</div></div>
+      <div class="topic-item">
+        <div class="topic-header" onclick="toggleTopic(this.parentElement)">
+          <span class="topic-num">1</span> Cell Structure &amp; Organization
+          <span class="chevron">&#x25BC;</span>
+        </div>
+        <div class="topic-content"><div class="topic-content-inner">
+          Cells are the basic building blocks of all living organisms. There are two main types of cells:
+          <ul>
+            <li><strong>Prokaryotic cells</strong> (bacteria) &mdash; no nucleus, smaller, simpler structure</li>
+            <li><strong>Eukaryotic cells</strong> (animals, plants, fungi) &mdash; have a true nucleus and membrane-bound organelles</li>
+            <li><strong>Key organelles:</strong> nucleus (DNA), mitochondria (energy), ribosomes (proteins), cell membrane (barrier)</li>
+            <li><strong>Plant cells</strong> also have: cell wall, chloroplasts, and a large vacuole</li>
+            <li><strong>Levels of organization:</strong> cells &rarr; tissues &rarr; organs &rarr; organ systems &rarr; organism</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="topic-item">
+        <div class="topic-header" onclick="toggleTopic(this.parentElement)">
+          <span class="topic-num">2</span> Movement In &amp; Out of Cells
+          <span class="chevron">&#x25BC;</span>
+        </div>
+        <div class="topic-content"><div class="topic-content-inner">
+          Substances move in and out of cells through several key processes:
+          <ul>
+            <li><strong>Diffusion</strong> &mdash; movement of particles from high to low concentration (passive, no energy needed)</li>
+            <li><strong>Osmosis</strong> &mdash; movement of water molecules through a partially permeable membrane</li>
+            <li><strong>Active transport</strong> &mdash; movement against the concentration gradient (requires energy from respiration)</li>
+            <li><strong>Exam tip:</strong> Always mention &ldquo;concentration gradient&rdquo; and &ldquo;partially permeable membrane&rdquo; in your answers</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="topic-item">
+        <div class="topic-header" onclick="toggleTopic(this.parentElement)">
+          <span class="topic-num">3</span> Biological Molecules
+          <span class="chevron">&#x25BC;</span>
+        </div>
+        <div class="topic-content"><div class="topic-content-inner">
+          Living organisms are built from four main groups of biological molecules:
+          <ul>
+            <li><strong>Carbohydrates</strong> &mdash; provide energy (glucose, starch, glycogen, cellulose)</li>
+            <li><strong>Proteins</strong> &mdash; made of amino acids; used for growth, repair, enzymes, and antibodies</li>
+            <li><strong>Lipids (fats)</strong> &mdash; long-term energy storage, insulation, and cell membranes</li>
+            <li><strong>Testing for molecules:</strong> Benedict's test (sugars), iodine test (starch), biuret test (proteins), ethanol test (lipids)</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="topic-item">
+        <div class="topic-header" onclick="toggleTopic(this.parentElement)">
+          <span class="topic-num">4</span> Enzymes &amp; Their Functions
+          <span class="chevron">&#x25BC;</span>
+        </div>
+        <div class="topic-content"><div class="topic-content-inner">
+          Enzymes are biological catalysts that speed up chemical reactions in living organisms:
+          <ul>
+            <li><strong>Lock and key model</strong> &mdash; the substrate fits into the enzyme's active site like a key in a lock</li>
+            <li><strong>Affected by:</strong> temperature (optimum ~37&deg;C for humans), pH, and substrate concentration</li>
+            <li><strong>Denaturation</strong> &mdash; at high temperatures or extreme pH, the active site changes shape and the enzyme stops working</li>
+            <li><strong>Examples:</strong> amylase (breaks down starch), protease (breaks down proteins), lipase (breaks down fats)</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="topic-item">
+        <div class="topic-header" onclick="toggleTopic(this.parentElement)">
+          <span class="topic-num">5</span> Plant Nutrition &amp; Photosynthesis
+          <span class="chevron">&#x25BC;</span>
+        </div>
+        <div class="topic-content"><div class="topic-content-inner">
+          Plants make their own food through photosynthesis:
+          <ul>
+            <li><strong>Equation:</strong> carbon dioxide + water &rarr; glucose + oxygen (light energy &amp; chlorophyll needed)</li>
+            <li><strong>Occurs in:</strong> chloroplasts, which contain the green pigment chlorophyll</li>
+            <li><strong>Limiting factors:</strong> light intensity, CO&#x2082; concentration, and temperature</li>
+            <li><strong>Leaf adaptations:</strong> broad &amp; flat (large surface area), thin (short diffusion distance), stomata (gas exchange), palisade cells packed with chloroplasts</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="topic-item">
+        <div class="topic-header" onclick="toggleTopic(this.parentElement)">
+          <span class="topic-num">6</span> Animal Nutrition &amp; Digestion
+          <span class="chevron">&#x25BC;</span>
+        </div>
+        <div class="topic-content"><div class="topic-content-inner">
+          The digestive system breaks down food into small, soluble molecules that can be absorbed:
+          <ul>
+            <li><strong>Mouth:</strong> mechanical digestion (teeth) and chemical digestion (amylase in saliva breaks down starch)</li>
+            <li><strong>Stomach:</strong> produces hydrochloric acid and protease (pepsin) to break down proteins</li>
+            <li><strong>Small intestine:</strong> where most digestion and absorption takes place; bile emulsifies fats</li>
+            <li><strong>Large intestine:</strong> absorbs water; undigested food forms faeces</li>
+            <li><strong>Villi:</strong> tiny finger-like projections that increase surface area for absorption in the small intestine</li>
+          </ul>
+        </div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -600,7 +923,15 @@ footer .footer-bottom {
           <h3>Bioluminescent Fungi: Nature's Glow Sticks</h3>
           <p>Deep in tropical forests, certain mushrooms emit an eerie green glow. Scientists believe this bioluminescence attracts insects that help spread spores.</p>
           <div class="hook-tags"><span>Fungi</span><span>Bioluminescence</span><span>Ecology</span></div>
-          <div class="hook-read">5 min read</div>
+          <button class="hook-read-btn" onclick="toggleHook(this.closest('.hook-card'))">Read More &rarr;</button>
+          <div class="hook-expanded"><div class="hook-expanded-inner">
+            <h4>How Does Bioluminescence Work?</h4>
+            <p>Bioluminescence is the production of light by living organisms. In fungi, it's caused by a chemical reaction involving a molecule called <strong>luciferin</strong> and the enzyme <strong>luciferase</strong>. When luciferin reacts with oxygen in the presence of luciferase, energy is released as light.</p>
+            <h4>Why Do Mushrooms Glow?</h4>
+            <p>Scientists discovered that glowing mushrooms attract insects &mdash; especially beetles and flies &mdash; at night. These insects help spread the fungi's spores, acting as "fungal pollinators." It's an incredibly clever evolutionary adaptation!</p>
+            <h4>Where Can You Find Them?</h4>
+            <p>Over 80 species of bioluminescent fungi have been identified, most in tropical forests in Brazil, Japan, and Southeast Asia. The <em>Mycena chlorophos</em> is one of the most famous, glowing a brilliant green on the forest floor.</p>
+          </div></div>
         </div>
       </div>
       <div class="hook-card">
@@ -610,7 +941,15 @@ footer .footer-bottom {
           <h3>The Immortal Jellyfish: Turritopsis dohrnii</h3>
           <p>This tiny jellyfish can reverse its aging process and return to its polyp stage after reaching maturity. It's biologically immortal!</p>
           <div class="hook-tags"><span>Marine Biology</span><span>Regeneration</span><span>Genetics</span></div>
-          <div class="hook-read">6 min read</div>
+          <button class="hook-read-btn" onclick="toggleHook(this.closest('.hook-card'))">Read More &rarr;</button>
+          <div class="hook-expanded"><div class="hook-expanded-inner">
+            <h4>What Makes It "Immortal"?</h4>
+            <p>When stressed, injured, or old, <em>Turritopsis dohrnii</em> can undergo a process called <strong>transdifferentiation</strong>. Its cells essentially transform back into younger cell types, reverting the adult medusa back into a juvenile polyp. It's like a butterfly turning back into a caterpillar!</p>
+            <h4>Can Humans Learn From This?</h4>
+            <p>Scientists are studying this jellyfish to understand cellular rejuvenation. The process involves <strong>reprogramming cells</strong> &mdash; turning specialized adult cells back into stem-like cells. This research could have huge implications for medicine, aging, and regenerative therapy.</p>
+            <h4>Fun Fact</h4>
+            <p>Despite being "immortal," these jellyfish are only about 4.5 mm in diameter &mdash; smaller than a fingernail! They're native to the Mediterranean Sea but have spread to oceans worldwide.</p>
+          </div></div>
         </div>
       </div>
       <div class="hook-card">
@@ -620,7 +959,15 @@ footer .footer-bottom {
           <h3>CRISPR: The Gene-Editing Revolution</h3>
           <p>CRISPR-Cas9 allows scientists to edit DNA with unprecedented precision. From curing genetic diseases to creating drought-resistant crops.</p>
           <div class="hook-tags"><span>Genetics</span><span>Biotechnology</span><span>CRISPR</span></div>
-          <div class="hook-read">8 min read</div>
+          <button class="hook-read-btn" onclick="toggleHook(this.closest('.hook-card'))">Read More &rarr;</button>
+          <div class="hook-expanded"><div class="hook-expanded-inner">
+            <h4>What Is CRISPR?</h4>
+            <p><strong>CRISPR</strong> stands for Clustered Regularly Interspaced Short Palindromic Repeats. It's a natural defence system that bacteria use to fight viruses. Scientists adapted it into a powerful gene-editing tool &mdash; like molecular "scissors" that can cut DNA at specific locations.</p>
+            <h4>How Does It Work?</h4>
+            <p>A guide RNA directs the Cas9 protein to the exact location on the DNA strand that needs to be edited. Cas9 then cuts the DNA, and scientists can remove, replace, or insert new genetic material. It's faster, cheaper, and more accurate than any previous method.</p>
+            <h4>Real-World Applications</h4>
+            <p>CRISPR is already being used to develop treatments for sickle cell disease, certain cancers, and hereditary blindness. In agriculture, it's creating crops that are more resistant to drought and disease. The possibilities are truly revolutionary!</p>
+          </div></div>
         </div>
       </div>
     </div>
@@ -745,6 +1092,11 @@ footer .footer-bottom {
   </div>
 </section>
 
+<!-- QUIZ MODAL -->
+<div class="quiz-overlay" id="quizOverlay">
+  <div class="quiz-modal" id="quizModal"></div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -762,10 +1114,10 @@ footer .footer-bottom {
     </div>
     <div class="footer-col">
       <h4>Topics</h4>
-      <a href="#">Cell Biology</a>
-      <a href="#">Genetics</a>
-      <a href="#">Ecology</a>
-      <a href="#">Human Biology</a>
+      <a href="#igcse-hub">Cell Biology</a>
+      <a href="#igcse-hub">Genetics</a>
+      <a href="#igcse-hub">Ecology</a>
+      <a href="#igcse-hub">Human Biology</a>
     </div>
     <div class="footer-col">
       <h4>Connect</h4>
@@ -780,5 +1132,187 @@ footer .footer-bottom {
   </div>
 </footer>
 
+<script>
+// PRE-IGCSE CARD TOGGLE
+function togglePreCard(card) {
+  card.classList.toggle('expanded');
+  const btn = card.querySelector('.start-learning');
+  if (card.classList.contains('expanded')) {
+    btn.innerHTML = 'Close &times;';
+  } else {
+    btn.innerHTML = 'Start Learning &rarr;';
+  }
+}
+
+// IGCSE HUB CARD TOGGLE
+function toggleHubCard(card) {
+  card.classList.toggle('expanded');
+  const btn = card.querySelector('.explore-btn');
+  if (card.classList.contains('expanded')) {
+    btn.innerHTML = 'Close &times;';
+  } else {
+    btn.innerHTML = 'Explore Topics &rarr;';
+  }
+}
+
+// TOPIC ACCORDION
+function toggleTopic(item) {
+  const wasExpanded = item.classList.contains('expanded');
+  // Close all
+  document.querySelectorAll('.topic-item').forEach(t => t.classList.remove('expanded'));
+  // Open clicked if it wasn't already open
+  if (!wasExpanded) item.classList.add('expanded');
+}
+
+// HOOK GALLERY READ MORE
+function toggleHook(card) {
+  card.classList.toggle('expanded');
+  const btn = card.querySelector('.hook-read-btn');
+  if (card.classList.contains('expanded')) {
+    btn.innerHTML = 'Show Less &uarr;';
+  } else {
+    btn.innerHTML = 'Read More &rarr;';
+  }
+}
+
+// QUIZ DATA
+const quizData = {
+  cell: {
+    title: 'Cell Biology Quiz',
+    subtitle: 'Test your knowledge of cells, organelles, and cellular processes!',
+    questions: [
+      { q: 'Which organelle is known as the "powerhouse of the cell"?', options: ['Nucleus', 'Mitochondria', 'Ribosome', 'Golgi apparatus'], answer: 1 },
+      { q: 'What is the function of the cell membrane?', options: ['Stores DNA', 'Produces energy', 'Controls what enters and leaves the cell', 'Makes proteins'], answer: 2 },
+      { q: 'Which type of cell has a cell wall?', options: ['Animal cell only', 'Plant cell only', 'Both animal and plant cells', 'Neither'], answer: 1 },
+      { q: 'What is osmosis?', options: ['Movement of oxygen into cells', 'Movement of water through a partially permeable membrane', 'Movement of glucose across a cell', 'Active transport of minerals'], answer: 1 },
+      { q: 'What happens to an enzyme at very high temperatures?', options: ['It works faster', 'It gets denatured', 'Nothing changes', 'It divides'], answer: 1 }
+    ]
+  },
+  genetics: {
+    title: 'Genetics Quiz',
+    subtitle: 'How well do you know DNA, heredity, and genetic variation?',
+    questions: [
+      { q: 'What does DNA stand for?', options: ['Deoxyribonucleic Acid', 'Dinitrogen Acid', 'Dynamic Nuclear Assembly', 'Deoxynitrogen Acid'], answer: 0 },
+      { q: 'Which bases pair together in DNA?', options: ['A-G and T-C', 'A-T and G-C', 'A-C and G-T', 'A-U and G-C'], answer: 1 },
+      { q: 'What is a dominant allele?', options: ['An allele that is always mutated', 'An allele expressed only when homozygous', 'An allele that is expressed even when only one copy is present', 'The rarest allele in a population'], answer: 2 },
+      { q: 'What is the process of copying DNA called?', options: ['Transcription', 'Translation', 'Replication', 'Mutation'], answer: 2 },
+      { q: 'How many chromosomes do human body cells have?', options: ['23', '46', '44', '48'], answer: 1 }
+    ]
+  },
+  ecology: {
+    title: 'Ecology Quiz',
+    subtitle: 'Test your understanding of ecosystems and the environment!',
+    questions: [
+      { q: 'What is a food chain?', options: ['A chain of restaurants', 'A sequence showing how energy passes from one organism to another', 'A list of nutrients in food', 'A type of symbiotic relationship'], answer: 1 },
+      { q: 'What do decomposers do?', options: ['Produce oxygen', 'Break down dead organisms and recycle nutrients', 'Eat only plants', 'Create new ecosystems'], answer: 1 },
+      { q: 'Which gas do plants absorb during photosynthesis?', options: ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Hydrogen'], answer: 2 },
+      { q: 'What is biodiversity?', options: ['The total number of animals in a zoo', 'The variety of living organisms in an area', 'The number of ecosystems on Earth', 'The amount of water in a habitat'], answer: 1 },
+      { q: 'What is the main cause of global warming?', options: ['Increased oxygen levels', 'Decreased water vapour', 'Increased greenhouse gases like CO\u2082', 'Decreased sunlight'], answer: 2 }
+    ]
+  },
+  human: {
+    title: 'Human Biology Quiz',
+    subtitle: 'How much do you know about the human body?',
+    questions: [
+      { q: 'What is the main function of red blood cells?', options: ['Fight infections', 'Carry oxygen', 'Clot blood', 'Produce hormones'], answer: 1 },
+      { q: 'Where does gas exchange take place in the lungs?', options: ['Bronchi', 'Trachea', 'Alveoli', 'Diaphragm'], answer: 2 },
+      { q: 'What organ filters waste products from the blood?', options: ['Heart', 'Liver', 'Kidneys', 'Lungs'], answer: 2 },
+      { q: 'What carries electrical signals in the nervous system?', options: ['Red blood cells', 'Neurons', 'Platelets', 'White blood cells'], answer: 1 },
+      { q: 'Which chamber of the heart pumps blood to the whole body?', options: ['Right atrium', 'Right ventricle', 'Left atrium', 'Left ventricle'], answer: 3 }
+    ]
+  }
+};
+
+// QUIZ FUNCTIONS
+let currentQuiz = null;
+let selectedAnswers = {};
+
+function openQuiz(topic) {
+  currentQuiz = quizData[topic];
+  selectedAnswers = {};
+  renderQuiz();
+  document.getElementById('quizOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQuiz() {
+  document.getElementById('quizOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+  currentQuiz = null;
+}
+
+function renderQuiz() {
+  const modal = document.getElementById('quizModal');
+  const letters = ['A', 'B', 'C', 'D'];
+  let html = `
+    <button class="quiz-close" onclick="closeQuiz()">&times;</button>
+    <h3>${currentQuiz.title}</h3>
+    <p class="quiz-subtitle">${currentQuiz.subtitle}</p>
+  `;
+  currentQuiz.questions.forEach((q, qi) => {
+    html += `<div class="quiz-question">
+      <div class="q-num">Question ${qi + 1} of ${currentQuiz.questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      const sel = selectedAnswers[qi] === oi ? ' selected' : '';
+      html += `<div class="quiz-option${sel}" onclick="selectAnswer(${qi}, ${oi})">
+        <span class="letter">${letters[oi]}</span> ${opt}
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+  html += `<button class="btn-primary quiz-submit" onclick="submitQuiz()">Submit Answers &rarr;</button>`;
+  modal.innerHTML = html;
+}
+
+function selectAnswer(qi, oi) {
+  selectedAnswers[qi] = oi;
+  renderQuiz();
+}
+
+function submitQuiz() {
+  const modal = document.getElementById('quizModal');
+  const letters = ['A', 'B', 'C', 'D'];
+  let score = 0;
+  currentQuiz.questions.forEach((q, qi) => {
+    if (selectedAnswers[qi] === q.answer) score++;
+  });
+
+  let html = `<button class="quiz-close" onclick="closeQuiz()">&times;</button>
+    <h3>${currentQuiz.title}</h3>`;
+  currentQuiz.questions.forEach((q, qi) => {
+    html += `<div class="quiz-question">
+      <div class="q-num">Question ${qi + 1}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = '';
+      if (oi === q.answer) cls = ' correct';
+      else if (selectedAnswers[qi] === oi) cls = ' wrong';
+      html += `<div class="quiz-option${cls}">
+        <span class="letter">${letters[oi]}</span> ${opt}
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  const pct = Math.round((score / currentQuiz.questions.length) * 100);
+  let msg = pct >= 80 ? 'Excellent work! You really know your stuff!' : pct >= 60 ? 'Good job! Keep studying to improve!' : 'Keep practicing! Review the study guides and try again.';
+
+  html += `<div class="quiz-result">
+    <div class="score">${score}/${currentQuiz.questions.length}</div>
+    <div class="score-text">${pct}% correct</div>
+    <div class="score-msg">${msg}</div>
+  </div>
+  <button class="btn-primary quiz-submit" onclick="closeQuiz()">Close Quiz</button>`;
+  modal.innerHTML = html;
+}
+
+// CLOSE QUIZ ON OVERLAY CLICK
+document.getElementById('quizOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeQuiz();
+});
+</script>
 </body>
 </html>
