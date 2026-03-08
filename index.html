@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioSphere with Lorenzo | IGCSE Biology Made Exciting</title>
+<meta name="description" content="Ace your IGCSE exams while exploring bioluminescent fungi, immortal jellyfish, and CRISPR technology. Free biology education for everyone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --text-muted: #57534e;
+  --accent: #059669;
+  --accent-light: #d1fae5;
+  --accent-dark: #047857;
+  --warm: #f59e0b;
+  --warm-light: #fef3c7;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --rose: #e11d48;
+  --rose-light: #ffe4e6;
+  --border: #e7e5e4;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,250,249,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+nav .nav-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+nav .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; }
+nav .logo svg { width: 32px; height: 32px; }
+nav .nav-links { display: flex; align-items: center; gap: 28px; }
+nav .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+nav .nav-links a:hover { color: var(--accent); }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: white;
+  padding: 10px 22px; border-radius: 50px;
+  font-weight: 600; font-size: 0.9rem;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--text);
+  padding: 10px 22px; border-radius: 50px;
+  font-weight: 600; font-size: 0.9rem;
+  text-decoration: none; border: 2px solid var(--border); cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger svg { width: 24px; height: 24px; }
+
+/* HERO */
+.hero {
+  padding: 140px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(5,150,105,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero .badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent-light); color: var(--accent-dark);
+  padding: 8px 18px; border-radius: 50px;
+  font-size: 0.85rem; font-weight: 600;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  max-width: 720px;
+  margin: 0 auto 24px;
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.15rem; color: var(--text-muted);
+  max-width: 560px; margin: 0 auto 36px;
+  line-height: 1.7;
+}
+.hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hero-stats {
+  display: flex; justify-content: center; gap: 60px;
+  margin-top: 60px; padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.hero-stats .stat { text-align: center; }
+.hero-stats .stat-num {
+  font-size: 2.2rem; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--warm));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-stats .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+
+/* SECTION HEADERS */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800; line-height: 1.15;
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  font-size: 1.05rem; color: var(--text-muted);
+  max-width: 560px; line-height: 1.7;
+}
+
+/* PRE-IGCSE */
+.pre-igcse { padding: 80px 24px; }
+.pre-igcse .section-tag { color: var(--warm); }
+.pre-igcse-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px; margin-top: 40px;
+}
+.pre-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: all 0.3s;
+  text-decoration: none; color: var(--text);
+}
+.pre-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+.pre-card .icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 16px;
+}
+.pre-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.pre-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.icon-green { background: var(--accent-light); }
+.icon-blue { background: #dbeafe; }
+.icon-rose { background: var(--rose-light); }
+.icon-amber { background: var(--warm-light); }
+
+/* DID YOU KNOW */
+.did-you-know {
+  margin: 40px 24px;
+  max-width: 1120px; margin-left: auto; margin-right: auto;
+  background: linear-gradient(135deg, var(--accent), #10b981);
+  border-radius: var(--radius);
+  padding: 48px;
+  color: white;
+  text-align: center;
+}
+.did-you-know h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 16px; }
+.did-you-know p { font-size: 1.05rem; max-width: 600px; margin: 0 auto; opacity: 0.95; line-height: 1.7; }
+
+/* MISSION */
+.mission { padding: 80px 24px; }
+.mission-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  margin-top: 40px;
+}
+.mission-image {
+  width: 100%; aspect-ratio: 4/3; border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-light), #d1fae5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; position: relative; overflow: hidden;
+}
+.mission-image::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(5,150,105,0.1), transparent);
+}
+.mission blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 20px;
+  font-style: italic;
+  color: var(--accent-dark);
+  margin: 24px 0;
+  line-height: 1.7;
+}
+.mission-values {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 24px;
+}
+.mission-value {
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.mission-value .check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); color: white;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.75rem; margin-top: 2px;
+}
+.mission-value strong { display: block; font-size: 0.9rem; }
+.mission-value span { font-size: 0.82rem; color: var(--text-muted); }
+
+/* IGCSE HUB */
+.igcse-hub { padding: 80px 24px; }
+.igcse-hub .section-tag { color: var(--purple); }
+.hub-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px; margin-top: 40px;
+}
+.hub-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all 0.3s;
+}
+.hub-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.hub-card .hub-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px; font-size: 1.1rem;
+}
+.hub-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.hub-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+.hub-card .meta { font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 12px; }
+
+/* TOPICS ACCORDION */
+.topics-section { padding: 0 24px 80px; }
+.topics-list { max-width: 700px; margin: 30px auto 0; }
+.topic-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.topic-header {
+  padding: 16px 20px;
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer; font-weight: 600; font-size: 0.95rem;
+  transition: background 0.2s;
+}
+.topic-header:hover { background: #fafaf9; }
+.topic-num {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--accent-light); color: var(--accent-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+}
+
+/* HOOK GALLERY */
+.hook-gallery { padding: 80px 24px; }
+.hook-gallery .section-tag { color: var(--rose); }
+.hook-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px; margin-top: 40px;
+}
+.hook-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.hook-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.hook-card-img {
+  height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+}
+.hook-card-body { padding: 24px; }
+.hook-card-body .hook-tag {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px; border-radius: 50px;
+  margin-bottom: 10px;
+}
+.hook-card-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.hook-card-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+.hook-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.hook-tags span { font-size: 0.72rem; padding: 3px 10px; border-radius: 50px; background: #f5f5f4; color: var(--text-muted); }
+.hook-read { font-size: 0.82rem; color: var(--text-muted); }
+
+/* STUDY TOOLS */
+.study-tools { padding: 80px 24px; }
+.study-tools .section-tag { color: var(--warm); }
+.tools-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px; margin-top: 40px;
+}
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px; text-align: center;
+  transition: all 0.3s;
+}
+.tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.tool-card .tool-icon { font-size: 2.5rem; margin-bottom: 14px; }
+.tool-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.tool-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+/* MEET LORENZO */
+.about { padding: 80px 24px; }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 60px; align-items: center; margin-top: 40px;
+}
+.about-avatar {
+  width: 100%; aspect-ratio: 1; border-radius: var(--radius);
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem;
+}
+.about p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+
+/* TESTIMONIALS */
+.testimonials { padding: 60px 24px; }
+.testimonial-cards { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; margin-top: 30px; }
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  min-width: 300px; flex-shrink: 0;
+}
+.testimonial-card .stars { color: var(--warm); margin-bottom: 12px; font-size: 0.9rem; }
+.testimonial-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; font-style: italic; margin-bottom: 14px; }
+.testimonial-card .author { font-size: 0.85rem; font-weight: 600; }
+
+/* CONTACT FORM */
+.contact { padding: 80px 24px; }
+.contact-wrapper {
+  max-width: 600px; margin: 40px auto 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+}
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 16px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 0.9rem;
+  transition: border-color 0.2s; background: var(--bg);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-submit { width: 100%; margin-top: 8px; font-size: 1rem; padding: 14px; justify-content: center; }
+
+/* FOOTER */
+footer {
+  background: var(--text);
+  color: #d6d3d1;
+  padding: 60px 24px 30px;
+  margin-top: 40px;
+}
+footer .footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; max-width: 1120px; margin: 0 auto;
+}
+footer .footer-brand p { font-size: 0.88rem; line-height: 1.6; margin-top: 12px; opacity: 0.7; }
+footer .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; color: #a8a29e; }
+footer .footer-col a { display: block; font-size: 0.88rem; color: #d6d3d1; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+footer .footer-col a:hover { color: var(--accent); }
+footer .footer-bottom {
+  max-width: 1120px; margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid #44403c;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.82rem; opacity: 0.6;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav .nav-links { display: none; }
+  .hamburger { display: block; }
+  nav .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--surface); padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+  }
+  .hero { padding: 120px 24px 60px; }
+  .hero-stats { gap: 30px; }
+  .mission-grid, .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .hook-grid { grid-template-columns: 1fr; }
+  footer .footer-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate { animation: fadeUp 0.6s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" fill="#059669" opacity="0.12"/><path d="M16 6c0 0-6 4-6 12s6 8 6 8 6 0 6-8-6-12-6-12z" fill="#059669"/><path d="M16 10v12" stroke="#047857" stroke-width="1.5"/><path d="M16 14l3-2M16 17l-3-2" stroke="#047857" stroke-width="1.5" stroke-linecap="round"/></svg>
+      BioSphere
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#pre-igcse">Pre-IGCSE</a>
+      <a href="#igcse-hub">IGCSE Hub</a>
+      <a href="#hook-gallery">Hook Gallery</a>
+      <a href="#study-tools">Study Tools</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn-primary">Book a Lesson</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="badge">&#x1F9EC; IGCSE Biology Made Exciting</div>
+    <h1>Discover the <em>Weird &amp; Wonderful</em> World of Life Science</h1>
+    <p>Ace your IGCSE exams while exploring bioluminescent fungi, immortal jellyfish, and CRISPR technology. Because biology should never be boring.</p>
+    <div class="hero-buttons">
+      <a href="#igcse-hub" class="btn-primary">Explore IGCSE Hub &rarr;</a>
+      <a href="#hook-gallery" class="btn-outline">See Fun Facts</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Study Guides</div></div>
+      <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Fun Facts</div></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">For Everyone</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRE-IGCSE -->
+<section class="pre-igcse" id="pre-igcse">
+  <div class="container">
+    <div class="section-tag">&#x2B50; FOR AGES 8-12</div>
+    <h2 class="section-title">Pre-IGCSE Biology Fun</h2>
+    <p class="section-subtitle">Start your biology adventure! Learn about the amazing world of living things in a fun and easy way. Perfect for young scientists from around the world!</p>
+    <div class="pre-igcse-grid">
+      <a href="#" class="pre-card">
+        <div class="icon icon-green">&#x1F331;</div>
+        <h3>Amazing Plants</h3>
+        <p>Discover how plants grow, make food from sunlight, and help us breathe!</p>
+      </a>
+      <a href="#" class="pre-card">
+        <div class="icon icon-blue">&#x1F98B;</div>
+        <h3>Incredible Animals</h3>
+        <p>Learn about different animals, how they live, eat, and survive in nature!</p>
+      </a>
+      <a href="#" class="pre-card">
+        <div class="icon icon-rose">&#x1F4AA;</div>
+        <h3>Your Amazing Body</h3>
+        <p>Explore how your body works &mdash; from your heart to your brain to your bones!</p>
+      </a>
+      <a href="#" class="pre-card">
+        <div class="icon icon-amber">&#x1F30D;</div>
+        <h3>Our Living Planet</h3>
+        <p>See how all living things connect in ecosystems around the world!</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DID YOU KNOW -->
+<div class="did-you-know">
+  <h2>&#x1F389; Did You Know?</h2>
+  <p>Your body has about <strong>37 trillion cells</strong>! That's more than all the stars you can see in the night sky. Every single cell is working hard to keep you healthy and strong!</p>
+</div>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="container">
+    <div class="section-tag" style="color:var(--accent)">&#x1F49A; MY MISSION</div>
+    <h2 class="section-title">Empowering <span style="color:var(--accent)">Underprivileged Students</span> Through Biology</h2>
+    <div class="mission-grid">
+      <div class="mission-image">&#x1F52C;</div>
+      <div>
+        <p class="section-subtitle" style="max-width:none">As an IGCSE student who is <strong>extremely passionate about biology</strong>, I've experienced firsthand how transformative quality education can be. But I also know that millions of young students around the world don't have access to the same opportunities.</p>
+        <p class="section-subtitle" style="max-width:none; margin-top:16px">That's why I created BioSphere with Lorenzo&mdash;to break down barriers and make <strong>world-class biology education accessible to everyone</strong>, regardless of their background or circumstances.</p>
+        <blockquote>"Every child deserves the chance to discover the wonders of science, to ask questions, and to dream big. Education is not a privilege&mdash;it's a right."</blockquote>
+        <div class="mission-values">
+          <div class="mission-value"><div class="check">&#x2713;</div><div><strong>Accessible</strong><span>Free resources for all students</span></div></div>
+          <div class="mission-value"><div class="check">&#x2713;</div><div><strong>Engaging</strong><span>Fun, not boring memorization</span></div></div>
+          <div class="mission-value"><div class="check">&#x2713;</div><div><strong>Empowering</strong><span>Building confidence &amp; curiosity</span></div></div>
+          <div class="mission-value"><div class="check">&#x2713;</div><div><strong>Global</strong><span>For students worldwide</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IGCSE HUB -->
+<section class="igcse-hub" id="igcse-hub">
+  <div class="container">
+    <div class="section-tag">&#x1F4DA; STRUCTURED LEARNING</div>
+    <h2 class="section-title">The <span style="color:var(--purple)">IGCSE Hub</span></h2>
+    <p class="section-subtitle">Comprehensive study guides with detailed explanations, exam tips, common mistakes to avoid, and practice quizzes for every topic.</p>
+    <div class="hub-grid">
+      <div class="hub-card">
+        <div class="hub-icon icon-green">&#x1F9EC;</div>
+        <h3>Cell Biology</h3>
+        <p>Explore the building blocks of life, from cell structure to cellular processes.</p>
+        <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+      </div>
+      <div class="hub-card">
+        <div class="hub-icon" style="background:#ede9fe">&#x1F9EC;</div>
+        <h3>Genetics</h3>
+        <p>Uncover the secrets of heredity, DNA, and genetic variation.</p>
+        <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+      </div>
+      <div class="hub-card">
+        <div class="hub-icon icon-amber">&#x1F33F;</div>
+        <h3>Ecology</h3>
+        <p>Understand ecosystems, food chains, and environmental balance.</p>
+        <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+      </div>
+      <div class="hub-card">
+        <div class="hub-icon icon-rose">&#x1FA7A;</div>
+        <h3>Human Biology</h3>
+        <p>Discover how the human body works, from organs to systems.</p>
+        <div class="meta"><span>6 topics</span><span>5 quiz questions</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics-section">
+  <div class="container" style="text-align:center">
+    <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:6px">&#x1F4CB; Cell Biology Study Guide Topics</h3>
+    <div class="topics-list">
+      <div class="topic-item"><div class="topic-header"><span class="topic-num">1</span> Cell Structure &amp; Organization</div></div>
+      <div class="topic-item"><div class="topic-header"><span class="topic-num">2</span> Movement In &amp; Out of Cells</div></div>
+      <div class="topic-item"><div class="topic-header"><span class="topic-num">3</span> Biological Molecules</div></div>
+      <div class="topic-item"><div class="topic-header"><span class="topic-num">4</span> Enzymes &amp; Their Functions</div></div>
+      <div class="topic-item"><div class="topic-header"><span class="topic-num">5</span> Plant Nutrition &amp; Photosynthesis</div></div>
+      <div class="topic-item"><div class="topic-header"><span class="topic-num">6</span> Animal Nutrition &amp; Digestion</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOOK GALLERY -->
+<section class="hook-gallery" id="hook-gallery">
+  <div class="container">
+    <div class="section-tag">&#x2728; FUN SCIENCE</div>
+    <h2 class="section-title">The Hook Gallery</h2>
+    <p class="section-subtitle">Mind-blowing biology facts and stories that will make you fall in love with life science.</p>
+    <div class="hook-grid">
+      <div class="hook-card">
+        <div class="hook-card-img" style="background:linear-gradient(135deg,#064e3b,#065f46)">&#x1F344;</div>
+        <div class="hook-card-body">
+          <span class="hook-tag" style="background:var(--accent-light);color:var(--accent-dark)">Fun Facts</span>
+          <h3>Bioluminescent Fungi: Nature's Glow Sticks</h3>
+          <p>Deep in tropical forests, certain mushrooms emit an eerie green glow. Scientists believe this bioluminescence attracts insects that help spread spores.</p>
+          <div class="hook-tags"><span>Fungi</span><span>Bioluminescence</span><span>Ecology</span></div>
+          <div class="hook-read">5 min read</div>
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-card-img" style="background:linear-gradient(135deg,#1e1b4b,#312e81)">&#x1FAB8;</div>
+        <div class="hook-card-body">
+          <span class="hook-tag" style="background:var(--purple-light);color:var(--purple)">Mysteries</span>
+          <h3>The Immortal Jellyfish: Turritopsis dohrnii</h3>
+          <p>This tiny jellyfish can reverse its aging process and return to its polyp stage after reaching maturity. It's biologically immortal!</p>
+          <div class="hook-tags"><span>Marine Biology</span><span>Regeneration</span><span>Genetics</span></div>
+          <div class="hook-read">6 min read</div>
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-card-img" style="background:linear-gradient(135deg,#7f1d1d,#991b1b)">&#x1F9EC;</div>
+        <div class="hook-card-body">
+          <span class="hook-tag" style="background:var(--rose-light);color:var(--rose)">Tech</span>
+          <h3>CRISPR: The Gene-Editing Revolution</h3>
+          <p>CRISPR-Cas9 allows scientists to edit DNA with unprecedented precision. From curing genetic diseases to creating drought-resistant crops.</p>
+          <div class="hook-tags"><span>Genetics</span><span>Biotechnology</span><span>CRISPR</span></div>
+          <div class="hook-read">8 min read</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDY TOOLS -->
+<section class="study-tools" id="study-tools">
+  <div class="container">
+    <div class="section-tag">&#x1F6E0;&#xFE0F; RESOURCES</div>
+    <h2 class="section-title">Study Tools</h2>
+    <p class="section-subtitle">Everything you need to ace your IGCSE Biology exams.</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon">&#x1F4DD;</div>
+        <h3>Practice Quizzes</h3>
+        <p>Test your knowledge with topic-specific quizzes and instant feedback.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#x1F4CB;</div>
+        <h3>Study Guides</h3>
+        <p>Comprehensive guides covering every IGCSE Biology topic in detail.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#x1F3AC;</div>
+        <h3>YouTube Channel</h3>
+        <p>HD video explanations, beautiful animations, and exam-focused content.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">&#x1F4A1;</div>
+        <h3>Exam Tips</h3>
+        <p>Common mistakes to avoid and strategies to maximise your marks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT LORENZO -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-tag" style="color:var(--accent)">&#x1F44B; MEET LORENZO</div>
+    <h2 class="section-title">A Student on a Mission</h2>
+    <div class="about-grid">
+      <div class="about-avatar">&#x1F468;&#x200D;&#x1F52C;</div>
+      <div>
+        <p>Hi! I'm Lorenzo, an IGCSE student who is absolutely obsessed with biology. From the moment I learned about DNA replication to discovering how fungi can control ant brains, I knew this was my calling.</p>
+        <p>But here's what drives me even more: not everyone has the opportunity to learn. Many brilliant students around the world don't have access to quality biology education. That's why I created BioSphere&mdash;to share my passion and help underprivileged students who deserve the same chance to fall in love with life science.</p>
+        <p>I believe biology shouldn't be boring memorization. It should be about wonder, curiosity, and discovery. Whether you're preparing for your IGCSE exams or just curious about how life works, I'm here to help&mdash;completely free.</p>
+        <a href="#contact" class="btn-primary" style="margin-top:16px">Book a Free Lesson &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-tag" style="color:var(--warm)">&#x1F31F; WHAT STUDENTS SAY</div>
+    <h2 class="section-title">Student Reviews</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <div class="stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</div>
+        <p>"Lorenzo made genetics so easy to understand! His passion for biology is contagious."</p>
+        <div class="author">&mdash; S.A.M.</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</div>
+        <p>"The hook gallery is amazing. I never thought mushrooms could glow! Learning biology has never been this fun."</p>
+        <div class="author">&mdash; Biology Student</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</div>
+        <p>"The study guides are so well organized. I went from struggling to getting top marks in my mock exams."</p>
+        <div class="author">&mdash; IGCSE Student</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact" id="contact">
+  <div class="container" style="text-align:center">
+    <div class="section-tag" style="color:var(--accent)">&#x1F4E9; GET IN TOUCH</div>
+    <h2 class="section-title">Request a Session</h2>
+    <p class="section-subtitle" style="margin:0 auto">Book a free lesson with Lorenzo. Pick a topic and a time that works for you!</p>
+    <div class="contact-wrapper">
+      <form onsubmit="event.preventDefault(); alert('Thank you! Lorenzo will be in touch soon.');">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Enter your name" required></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com" required></div>
+        </div>
+        <div class="form-group">
+          <label>Topic You Need Help With</label>
+          <select required>
+            <option value="">Select a topic</option>
+            <option>Cell Biology</option>
+            <option>Genetics &amp; DNA</option>
+            <option>Ecology &amp; Environment</option>
+            <option>Human Biology</option>
+            <option>Plant Biology</option>
+            <option>Enzymes &amp; Digestion</option>
+            <option>Respiration &amp; Photosynthesis</option>
+            <option>General IGCSE Prep</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Preferred Date</label><input type="date"></div>
+          <div class="form-group"><label>Preferred Time</label>
+            <select>
+              <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+              <option>12:00 PM</option><option>02:00 PM</option><option>03:00 PM</option>
+              <option>04:00 PM</option><option>05:00 PM</option><option>06:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Additional Message (Optional)</label><textarea placeholder="Tell Lorenzo what you'd like to focus on..." maxlength="500"></textarea></div>
+        <button type="submit" class="btn-primary form-submit">Book Free Lesson &rarr;</button>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-top:12px">Your information is safe and will only be used to schedule your lesson.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="font-weight:800;font-size:1.1rem;color:white">&#x1F33F; BioSphere</div>
+      <p>Making IGCSE biology exciting, accessible, and exam-ready for every student.</p>
+      <p style="margin-top:8px">lorenzo.passaretta@gmail.com</p>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#igcse-hub">IGCSE Hub</a>
+      <a href="#hook-gallery">Hook Gallery</a>
+      <a href="#study-tools">Study Tools</a>
+      <a href="#about">About Lorenzo</a>
+    </div>
+    <div class="footer-col">
+      <h4>Topics</h4>
+      <a href="#">Cell Biology</a>
+      <a href="#">Genetics</a>
+      <a href="#">Ecology</a>
+      <a href="#">Human Biology</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#contact">Book a Session</a>
+      <a href="#mission">My Mission</a>
+      <a href="#pre-igcse">Pre-IGCSE</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 BioSphere with Lorenzo. All rights reserved.</span>
+    <span>Privacy Policy &middot; Terms of Service</span>
+  </div>
+</footer>
+
+</body>
+</html>
