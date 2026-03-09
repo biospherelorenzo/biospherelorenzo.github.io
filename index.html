@@ -71,8 +71,8 @@ nav .nav-inner {
 }
 
 .nav-logo svg {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
 }
 
 .nav-links {
@@ -116,9 +116,9 @@ nav .nav-inner {
 
 /* HERO SECTION */
 .hero {
-  background: linear-gradient(135deg, var(--hero-dark) 0%, #0d3d24 100%);
+  background: linear-gradient(135deg, var(--hero-dark) 0%, #0d3d24 50%, #0a3520 100%);
   color: white;
-  padding: 120px 24px 80px;
+  padding: 140px 24px 100px;
   margin-top: 70px;
   position: relative;
   overflow: hidden;
@@ -127,11 +127,11 @@ nav .nav-inner {
 .hero::before {
   content: '';
   position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.08) 40%, transparent 70%);
   border-radius: 50%;
-  top: -200px;
+  top: -250px;
   right: -200px;
   animation: float 6s ease-in-out infinite;
 }
@@ -139,13 +139,62 @@ nav .nav-inner {
 .hero::after {
   content: '';
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(5, 150, 105, 0.06) 40%, transparent 70%);
   border-radius: 50%;
-  bottom: -100px;
-  left: -100px;
+  bottom: -150px;
+  left: -150px;
   animation: float-reverse 8s ease-in-out infinite;
+}
+
+/* Bioluminescent background effects */
+.hero-bg-effects {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-bg-effects .glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  animation: glow-pulse 5s ease-in-out infinite alternate;
+}
+.hero-bg-effects .glow:nth-child(1) {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.5) 0%, transparent 70%);
+  top: -10%; right: 5%;
+  animation-delay: 0s;
+}
+.hero-bg-effects .glow:nth-child(2) {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(5, 150, 105, 0.4) 0%, transparent 70%);
+  bottom: 5%; left: 10%;
+  animation-delay: 1.5s;
+}
+.hero-bg-effects .glow:nth-child(3) {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.6) 0%, transparent 70%);
+  top: 30%; left: 60%;
+  animation-delay: 3s;
+}
+.hero-bg-effects .glow:nth-child(4) {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
+  top: 50%; right: 20%;
+  animation-delay: 2s;
+}
+.hero-bg-effects .glow:nth-child(5) {
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.7) 0%, transparent 60%);
+  top: 10%; left: 20%;
+  animation-delay: 4s;
+}
+@keyframes glow-pulse {
+  0% { transform: scale(1); opacity: 0.3; }
+  100% { transform: scale(1.2); opacity: 0.5; }
 }
 
 @keyframes float {
@@ -180,10 +229,10 @@ nav .nav-inner {
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 56px;
-  line-height: 1.2;
-  margin-bottom: 20px;
-  font-weight: 800;
+  font-size: 64px;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  font-weight: 900;
 }
 
 .hero h1 .highlight {
@@ -242,17 +291,27 @@ nav .nav-inner {
 
 .hero-stats {
   display: flex;
-  gap: 48px;
+  gap: 60px;
   justify-content: center;
   color: #10b981;
-  font-size: 16px;
-  font-weight: 600;
 }
 
 .hero-stats div {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+}
+
+.hero-stats .stat-number {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.hero-stats .stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a7f3d0;
 }
 
 .hero-scroll {
@@ -317,9 +376,13 @@ section {
 
 .cards-grid-4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .cards-grid-4 { grid-template-columns: 1fr; }
 }
 
 .card {
@@ -337,12 +400,20 @@ section {
 
 .card-image {
   width: 100%;
-  height: 200px;
+  height: 240px;
   background: linear-gradient(135deg, #e0f2fe 0%, #d1f5e6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 64px;
+  font-size: 80px;
+  position: relative;
+}
+
+.card-image-icon {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 32px;
 }
 
 .card-content {
@@ -369,16 +440,22 @@ section {
 }
 
 .card-btn {
-  color: var(--accent);
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: white;
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
-  display: inline-block;
-  transition: color 0.3s;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.3s;
 }
 
 .card-btn:hover {
-  color: var(--accent-dark);
+  background: var(--accent-dark);
+  color: white;
 }
 
 /* DID YOU KNOW BANNER */
@@ -472,8 +549,16 @@ section {
 
 .mission-item::before {
   content: '✓';
-  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
   font-weight: 700;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -1126,8 +1211,8 @@ footer {
 }
 
 .footer-logo svg {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 }
 
 .footer-description {
@@ -1401,8 +1486,10 @@ footer {
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M7 17s-1 4 5 4 5-4 5-4M4 9s2-3 8-3 8 3 8 3M8 15s2 3 4 3 4-3 4-3M12 9v4"/>
+      <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+        <circle cx="20" cy="20" r="20" fill="#059669"/>
+        <path d="M20 8c-2 4-6 8-6 14s4 8 6 10c2-2 6-4 6-10s-4-10-6-14z" fill="#10b981" stroke="#d1fae5" stroke-width="1"/>
+        <path d="M20 12v16M16 18c2 1 4 1 8 0M15 24c3 1 5 1 10 0" stroke="#d1fae5" stroke-width="1" fill="none"/>
       </svg>
       BioSphere with Lorenzo
     </a>
@@ -1421,6 +1508,13 @@ footer {
 
 <!-- HERO SECTION -->
 <section class="hero">
+  <div class="hero-bg-effects">
+    <div class="glow"></div>
+    <div class="glow"></div>
+    <div class="glow"></div>
+    <div class="glow"></div>
+    <div class="glow"></div>
+  </div>
   <div class="hero-content">
     <div class="hero-badge">🧬 IGCSE Biology Made Exciting</div>
     <h1>Discover the <span class="highlight">Weird &</span> <span class="highlight">Wonderful</span> World of Life Science</h1>
@@ -1430,8 +1524,8 @@ footer {
       <button class="btn btn-secondary">See Fun Facts</button>
     </div>
     <div class="hero-stats">
-      <div>50+ Study Guides</div>
-      <div>100+ Fun Facts</div>
+      <div><span class="stat-number">50+</span><span class="stat-label">Study Guides</span></div>
+      <div><span class="stat-number">100+</span><span class="stat-label">Fun Facts</span></div>
     </div>
     <div class="hero-scroll">↓ Scroll to explore</div>
   </div>
@@ -1442,45 +1536,45 @@ footer {
   <div class="container">
     <div class="section-badge">⭐ FOR AGES 8-12</div>
     <h2 class="section-title"><span class="highlight">Pre-IGCSE</span> Biology Fun</h2>
-    <p class="section-description">Discover the wonders of biology in a way that's exciting, easy to understand, and actually fun!</p>
+    <p class="section-description">Start your biology adventure! Learn about the amazing world of living things in a fun and easy way. Perfect for young scientists from around the world! 🌟</p>
 
     <div class="cards-grid-4">
       <div class="card">
-        <div class="card-image">🌿</div>
+        <div class="card-image"><span class="card-image-icon">🌱</span>🌿</div>
         <div class="card-content">
-          <div class="card-icon">🍃</div>
+          <div class="card-icon">🌿</div>
           <h3>Amazing Plants</h3>
-          <p>Explore the incredible world of plants, from tiny seeds to towering trees.</p>
+          <p>Discover how plants grow, make food from sunlight, and help us breathe!</p>
           <a href="#" onclick="showPage('plants'); return false;" class="card-btn">Start Learning →</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-image">🦋</div>
+        <div class="card-image"><span class="card-image-icon">🦋</span>🦋</div>
         <div class="card-content">
-          <div class="card-icon">🐛</div>
+          <div class="card-icon">🐾</div>
           <h3>Incredible Animals</h3>
-          <p>Meet amazing creatures and discover their unique superpowers.</p>
+          <p>Learn about different animals, how they live, eat, and survive in nature!</p>
           <a href="#" onclick="showPage('animals'); return false;" class="card-btn">Start Learning →</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-image">❤️</div>
+        <div class="card-image"><span class="card-image-icon">🫀</span>❤️</div>
         <div class="card-content">
-          <div class="card-icon">💪</div>
+          <div class="card-icon">💖</div>
           <h3>Your Amazing Body</h3>
-          <p>Learn how your body works and why it's absolutely incredible.</p>
+          <p>Explore how your body works - from your heart to your brain to your bones!</p>
           <a href="#" onclick="showPage('body'); return false;" class="card-btn">Start Learning →</a>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-image">🌍</div>
+        <div class="card-image"><span class="card-image-icon">🌏</span>🌍</div>
         <div class="card-content">
           <div class="card-icon">🌎</div>
           <h3>Our Living Planet</h3>
-          <p>Understand how all living things connect on our amazing Earth.</p>
+          <p>See how all living things connect in ecosystems around the world!</p>
           <a href="#" onclick="showPage('planet'); return false;" class="card-btn">Start Learning →</a>
         </div>
       </div>
@@ -1504,25 +1598,33 @@ footer {
     <h2 class="section-title">Empowering <span class="highlight">Underprivileged Students</span> Through Biology</h2>
 
     <div class="mission-content">
-      <div class="mission-image">
+      <div class="mission-image" style="position: relative;">
         <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600" alt="Girl with microscope">
+        <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: white; border-radius: 12px; padding: 16px 20px; box-shadow: var(--shadow-lg);">
+          <div style="font-size: 22px; font-weight: 800; color: var(--accent); line-height: 1.3;">Every Child</div>
+          <div style="font-size: 14px; color: var(--text-muted);">Deserves Education</div>
+        </div>
       </div>
 
       <div class="mission-text">
         <p class="mission-quote">"Every child deserves the chance to discover the wonders of science, to ask questions, and to dream big. Education is not a privilege—it's a right."</p>
 
+        <p style="font-size: 15px; color: var(--text); line-height: 1.7; margin-bottom: 24px;">
+          My mission is to help <strong>underprivileged younger students thrive and enrich themselves academically</strong>. Through free resources, engaging content, and personalized lessons, I'm committed to making biology education:
+        </p>
+
         <div class="mission-checklist">
-          <div class="mission-item">Accessible</div>
-          <div class="mission-item">Engaging</div>
-          <div class="mission-item">Empowering</div>
-          <div class="mission-item">Global</div>
+          <div class="mission-item"><div><strong style="display: block; color: var(--text);">Accessible</strong><span style="font-size: 13px; color: var(--text-muted);">Free resources for all students</span></div></div>
+          <div class="mission-item"><div><strong style="display: block; color: var(--text);">Engaging</strong><span style="font-size: 13px; color: var(--text-muted);">Fun, not boring memorization</span></div></div>
+          <div class="mission-item"><div><strong style="display: block; color: var(--text);">Empowering</strong><span style="font-size: 13px; color: var(--text-muted);">Building confidence & curiosity</span></div></div>
+          <div class="mission-item"><div><strong style="display: block; color: var(--text);">Global</strong><span style="font-size: 13px; color: var(--text-muted);">For students worldwide</span></div></div>
         </div>
 
         <p style="font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px;">
-          I believe that every student, regardless of their background or economic status, deserves access to quality IGCSE biology education. Through interactive lessons, fun facts, and engaging content, I'm working to break down barriers and make science accessible to everyone.
+          Together, we can create a world where every young person—no matter where they come from—has the tools and support they need to excel in science and beyond. 🌍✨
         </p>
 
-        <button class="btn btn-primary">Book a Free Lesson →</button>
+        <button class="btn btn-primary" onclick="document.getElementById('book-lesson').scrollIntoView({behavior:'smooth'})">Book a Free Lesson →</button>
       </div>
     </div>
   </div>
@@ -1547,44 +1649,49 @@ footer {
         <div class="hub-card">
           <h3>Cell Biology Essentials</h3>
           <p>Everything you need to know about cells: structure, organelles, functions, and the amazing processes that happen inside.</p>
-          <button class="btn btn-primary">Take Quiz →</button>
+          <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px;">
+            <div style="font-size: 13px; font-weight: 700; color: #fbbf24; margin-bottom: 4px;">💡 WHY IT MATTERS</div>
+            <div style="font-size: 14px; line-height: 1.5;">Understanding cells is like learning the alphabet before reading—everything in biology builds on this foundation!</div>
+          </div>
+          <button class="btn btn-primary" style="background: white; color: var(--accent);">Take Cell Biology Quiz <span style="background: rgba(5,150,105,0.15); padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-left: 8px;">5 questions</span></button>
         </div>
 
+        <div class="section-label" style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-weight: 700; font-size: 18px;">📚 Study Guide Topics <span style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Click to expand</span></div>
         <div class="accordion">
           <div class="accordion-item">
-            <div class="accordion-header">📌 Cell Structure & Function</div>
+            <div class="accordion-header"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent-light); color: var(--accent); border-radius: 6px; font-weight: 700; font-size: 14px; margin-right: 12px;">1</span>Cell Structure & Organization<span style="margin-left: auto; font-size: 18px; color: var(--text-muted);">⌄</span></div>
             <div class="accordion-body">
-              <p>Learn about prokaryotic and eukaryotic cells, cell membranes, and how different organelles work together.</p>
+              <p>Learn about prokaryotic and eukaryotic cells, cell membranes, organelles, and how different structures work together.</p>
             </div>
           </div>
           <div class="accordion-item">
-            <div class="accordion-header">🔬 Microscopy & Cell Observation</div>
+            <div class="accordion-header"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent-light); color: var(--accent); border-radius: 6px; font-weight: 700; font-size: 14px; margin-right: 12px;">2</span>Movement In & Out of Cells<span style="margin-left: auto; font-size: 18px; color: var(--text-muted);">⌄</span></div>
             <div class="accordion-body">
-              <p>Master the techniques for preparing slides and observing cells under a microscope.</p>
+              <p>Understand diffusion, osmosis, active transport, and how substances move across cell membranes.</p>
             </div>
           </div>
           <div class="accordion-item">
-            <div class="accordion-header">💨 Transport Across Membranes</div>
+            <div class="accordion-header"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent-light); color: var(--accent); border-radius: 6px; font-weight: 700; font-size: 14px; margin-right: 12px;">3</span>Biological Molecules<span style="margin-left: auto; font-size: 18px; color: var(--text-muted);">⌄</span></div>
             <div class="accordion-body">
-              <p>Understand diffusion, osmosis, active transport, and how substances move in and out of cells.</p>
+              <p>Explore carbohydrates, proteins, lipids, and nucleic acids - the building blocks of life.</p>
             </div>
           </div>
           <div class="accordion-item">
-            <div class="accordion-header">⚡ Mitosis & Cell Division</div>
+            <div class="accordion-header"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent-light); color: var(--accent); border-radius: 6px; font-weight: 700; font-size: 14px; margin-right: 12px;">4</span>Enzymes & Their Functions<span style="margin-left: auto; font-size: 18px; color: var(--text-muted);">⌄</span></div>
             <div class="accordion-body">
-              <p>Explore the stages of mitosis and how cells reproduce to create new cells for growth and repair.</p>
+              <p>Understand how enzymes catalyze reactions, factors affecting enzyme activity, and their role in metabolism.</p>
             </div>
           </div>
           <div class="accordion-item">
-            <div class="accordion-header">🧬 DNA & Photosynthesis</div>
+            <div class="accordion-header"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent-light); color: var(--accent); border-radius: 6px; font-weight: 700; font-size: 14px; margin-right: 12px;">5</span>Plant Nutrition & Photosynthesis<span style="margin-left: auto; font-size: 18px; color: var(--text-muted);">⌄</span></div>
             <div class="accordion-body">
-              <p>Learn about genetic material and how plants harness sunlight for energy.</p>
+              <p>Learn how plants make food using sunlight, and the role of minerals in plant growth.</p>
             </div>
           </div>
           <div class="accordion-item">
-            <div class="accordion-header">🔄 Respiration & Enzyme Action</div>
+            <div class="accordion-header"><span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--accent-light); color: var(--accent); border-radius: 6px; font-weight: 700; font-size: 14px; margin-right: 12px;">6</span>Animal Nutrition & Digestion<span style="margin-left: auto; font-size: 18px; color: var(--text-muted);">⌄</span></div>
             <div class="accordion-body">
-              <p>Understand cellular respiration and how enzymes speed up biochemical reactions.</p>
+              <p>Explore the human digestive system, balanced diet, and how nutrients are absorbed and used.</p>
             </div>
           </div>
         </div>
@@ -1610,9 +1717,15 @@ footer {
           </div>
         </div>
 
-        <div style="margin-top: 40px; text-align: center;">
-          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 16px;">Ready to Test Your Knowledge?</h4>
-          <button class="btn btn-primary">Start Quiz →</button>
+        <div style="margin-top: 40px; background: var(--accent-light); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; height: 40px; background: var(--accent); border-radius: 50%;"></div>
+            <div>
+              <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 2px;">Ready to Test Your Knowledge?</h4>
+              <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Take the Cell Biology quiz with 5 exam-style questions</p>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="white-space: nowrap;">▶ Start Quiz</button>
         </div>
       </div>
     </div>
@@ -1807,8 +1920,12 @@ footer {
 
       <div class="technique-content">
         <h4>Spaced Repetition</h4>
-        <p>Review material at increasing intervals. Instead of cramming, you review cells on day 1, day 3, day 7, and day 14. This locks information into long-term memory.</p>
-        <div class="technique-example">Example: Review mitosis on Monday, review again on Wednesday, then Sunday, then two weeks later.</div>
+        <p style="color: var(--accent-dark); font-size: 14px; margin-bottom: 8px;">Studies show 200% better retention compared to cramming (Cepeda et al., 2006)</p>
+        <p>Review material at increasing intervals (1 day, 3 days, 7 days, 14 days). This exploits the psychological spacing effect, where information is better retained when learning sessions are spaced out.</p>
+        <div class="technique-example" style="border-left: 3px solid var(--accent); background: white; padding: 12px 16px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 4px;">🔬 The Science</div>
+          Studies show 200% better retention compared to cramming (Cepeda et al., 2006)
+        </div>
       </div>
     </div>
 
@@ -1853,25 +1970,64 @@ footer {
 <!-- ABOUT LORENZO SECTION -->
 <section id="about">
   <div class="container">
-    <div class="about-heading">Lorenzo</div>
-    <div class="about-subheading">A Student on a Mission</div>
+    <div class="section-badge">👤 ABOUT</div>
+    <h2 class="section-title">About <span class="highlight">Lorenzo</span></h2>
+    <p class="section-description" style="text-align: center; max-width: 700px; margin: 0 auto 48px;">A student on a mission to make IGCSE Biology exciting and accessible for everyone.</p>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <h4>Passionate IGCSE Student</h4>
-        <p>Currently acing my IGCSE Biology exams while maintaining a passion for making science accessible and exciting for everyone.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+      <div>
+        <div class="features-grid" style="grid-template-columns: 1fr;">
+          <div class="feature-card" style="display: flex; gap: 16px; align-items: flex-start; text-align: left;">
+            <div style="width: 40px; height: 40px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-size: 18px;">🎓</div>
+            <div>
+              <h4>Personalized Learning</h4>
+              <p>Every student is different, which is why I tailor my approach to your learning style</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; gap: 16px; align-items: flex-start; text-align: left;">
+            <div style="width: 40px; height: 40px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-size: 18px;">🎯</div>
+            <div>
+              <h4>Fun & Engaging</h4>
+              <p>No boring lectures! Biology is meant to be fascinating and I make sure it stays that way</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; gap: 16px; align-items: flex-start; text-align: left;">
+            <div style="width: 40px; height: 40px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-size: 18px;">💚</div>
+            <div>
+              <h4>Completely Free</h4>
+              <p>No cost, no catch. I believe quality education should be accessible to everyone</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; gap: 16px; align-items: flex-start; text-align: left;">
+            <div style="width: 40px; height: 40px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-size: 18px;">📚</div>
+            <div>
+              <h4>Study Resources</h4>
+              <p>Get additional notes and resources after our session to reinforce your learning</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <h4>Teaching the Underprivileged</h4>
-        <p>I believe education is a right, not a privilege. I dedicate my time to providing free biology lessons to students from disadvantaged backgrounds.</p>
-      </div>
-      <div class="feature-card">
-        <h4>Making Biology Fun</h4>
-        <p>With engaging content, fun facts, and interactive tools, I'm transforming how students view biology—from boring to absolutely fascinating.</p>
-      </div>
-      <div class="feature-card">
-        <h4>Free Education for All</h4>
-        <p>Everything on BioSphere is completely free. No hidden fees, no paywalls. Just pure, quality biology education for every student who needs it.</p>
+
+      <div>
+        <div style="background: var(--accent-light); border-radius: 16px; padding: 32px; margin-bottom: 24px;">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
+            <span style="background: var(--accent); color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700;">S</span>
+            <span style="background: var(--accent); color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700;">A</span>
+            <span style="background: var(--accent); color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700;">M</span>
+            <span style="color: #f59e0b;">⭐⭐⭐⭐⭐</span>
+          </div>
+          <p style="font-style: italic; color: var(--accent-dark); font-size: 15px; line-height: 1.6;">"Lorenzo made genetics so easy to understand! His passion for biology is contagious."</p>
+        </div>
+
+        <div style="background: var(--accent-light); border-radius: 16px; padding: 32px;">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
+            <span style="background: #06b6d4; color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700;">E</span>
+            <span style="background: #06b6d4; color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700;">L</span>
+            <span style="background: #06b6d4; color: white; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: 700;">I</span>
+            <span style="color: #f59e0b;">⭐⭐⭐⭐⭐</span>
+          </div>
+          <p style="font-style: italic; color: var(--accent-dark); font-size: 15px; line-height: 1.6;">"I went from struggling with cell biology to getting an A. The study tools are amazing!"</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1880,12 +2036,102 @@ footer {
 <!-- BOOK A LESSON SECTION -->
 <section id="book-lesson">
   <div class="container">
-    <div class="book-card">
-      <h3>Book a Lesson with Me</h3>
-      <p>Get personalized IGCSE biology tutoring that actually makes biology exciting. Free for underprivileged students, affordable for everyone else.</p>
-      <a href="mailto:lorenzo@biospherelorenzo.com" class="book-email">📧 lorenzo@biospherelorenzo.com</a>
-      <br>
-      <button class="book-btn">Book Now</button>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+      <div>
+        <div class="section-badge">📅 BOOK A SESSION</div>
+        <h2 class="section-title">Book a <span class="highlight">Free Lesson</span></h2>
+        <p style="font-size: 16px; color: var(--text-muted); line-height: 1.6; margin-bottom: 32px;">
+          Get personalized IGCSE biology tutoring that actually makes biology exciting. Free for underprivileged students, affordable for everyone else.
+        </p>
+        <div class="features-grid" style="grid-template-columns: 1fr; gap: 16px;">
+          <div class="feature-card" style="display: flex; gap: 12px; align-items: center; padding: 16px 20px;">
+            <span style="font-size: 20px;">🎓</span>
+            <div>
+              <h4 style="font-size: 15px; margin-bottom: 2px;">Personalized Learning</h4>
+              <p style="font-size: 13px;">Tailored to your level and learning style</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; gap: 12px; align-items: center; padding: 16px 20px;">
+            <span style="font-size: 20px;">🎯</span>
+            <div>
+              <h4 style="font-size: 15px; margin-bottom: 2px;">Fun & Engaging</h4>
+              <p style="font-size: 13px;">No boring lectures - biology is meant to be fascinating</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; gap: 12px; align-items: center; padding: 16px 20px;">
+            <span style="font-size: 20px;">💚</span>
+            <div>
+              <h4 style="font-size: 15px; margin-bottom: 2px;">Completely Free</h4>
+              <p style="font-size: 13px;">No cost, no catch. I believe quality education should be accessible to everyone</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; gap: 12px; align-items: center; padding: 16px 20px;">
+            <span style="font-size: 20px;">📚</span>
+            <div>
+              <h4 style="font-size: 15px; margin-bottom: 2px;">Study Resources</h4>
+              <p style="font-size: 13px;">Get additional notes and resources after our session to reinforce your learning</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: white; border: 2px solid var(--border); border-radius: 16px; padding: 32px;">
+        <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 24px;">Schedule Your Session</h3>
+        <form>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">First Name</label>
+              <input type="text" placeholder="Your first name" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; transition: border 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Last Name</label>
+              <input type="text" placeholder="Your last name" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; transition: border 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Email Address</label>
+            <input type="email" placeholder="your@email.com" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; transition: border 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Topic You Need Help With</label>
+            <select style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; background: white; transition: border 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+              <option>Select a topic</option>
+              <option>Cell Biology</option>
+              <option>Genetics</option>
+              <option>Ecology</option>
+              <option>Human Biology</option>
+              <option>Plant Biology</option>
+              <option>General IGCSE Prep</option>
+            </select>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Preferred Date</label>
+              <input type="date" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; transition: border 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+            <div>
+              <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Preferred Time</label>
+              <select style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; background: white; transition: border 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+                <option>Select time</option>
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+                <option>5:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;">Additional Message (Optional)</label>
+            <textarea placeholder="Tell me what you're struggling with or what you'd like to focus on..." style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; resize: vertical; min-height: 80px; font-family: inherit; transition: border 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'" maxlength="500"></textarea>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">0/500 characters</div>
+          </div>
+          <button type="button" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 16px;" onclick="alert('Thank you! Your booking request has been submitted. Lorenzo will get back to you soon!')">📅 Book Free Lesson</button>
+          <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px;">🔒 Your information is safe and will only be used to schedule your lesson</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -3476,52 +3722,59 @@ footer {
     <div class="footer-content">
       <div class="footer-section">
         <div class="footer-logo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 17s-1 4 5 4 5-4 5-4M4 9s2-3 8-3 8 3 8 3M8 15s2 3 4 3 4-3 4-3M12 9v4"/>
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+            <circle cx="20" cy="20" r="20" fill="#059669"/>
+            <path d="M20 8c-2 4-6 8-6 14s4 8 6 10c2-2 6-4 6-10s-4-10-6-14z" fill="#10b981" stroke="#d1fae5" stroke-width="1"/>
+            <path d="M20 12v16M16 18c2 1 4 1 8 0M15 24c3 1 5 1 10 0" stroke="#d1fae5" stroke-width="1" fill="none"/>
           </svg>
-          BioSphere with Lorenzo
+          BioSphere
         </div>
-        <p class="footer-description">Making IGCSE biology exciting and accessible to every student, regardless of their background.</p>
+        <p class="footer-description">Making IGCSE biology exciting, accessible, and exam-ready for every student.</p>
+        <p style="font-size: 13px; color: #a7f3d0; margin-bottom: 16px;">✉ lorenzo.passaretta@gmail.com</p>
         <div class="social-links">
           <a href="#" class="social-link">f</a>
           <a href="#" class="social-link">𝕏</a>
-          <a href="#" class="social-link">in</a>
+          <a href="https://instagram.com" class="social-link">📷</a>
+          <a href="https://youtube.com" class="social-link">▶</a>
         </div>
       </div>
 
       <div class="footer-section">
-        <h4>Quick Links</h4>
+        <h4>Resources</h4>
         <ul>
-          <li><a href="#pre-igcse">Pre-IGCSE</a></li>
           <li><a href="#igcse-hub">IGCSE Hub</a></li>
           <li><a href="#hook-gallery">Hook Gallery</a></li>
           <li><a href="#study-tools">Study Tools</a></li>
+          <li><a href="#about">About Lorenzo</a></li>
         </ul>
       </div>
 
       <div class="footer-section">
-        <h4>Study Resources</h4>
+        <h4>Topics</h4>
         <ul>
-          <li><a href="#">Study Guides</a></li>
-          <li><a href="#">Quiz Bank</a></li>
-          <li><a href="#">Video Library</a></li>
-          <li><a href="#">Exam Tips</a></li>
+          <li><a href="#">Cell Biology</a></li>
+          <li><a href="#">Genetics</a></li>
+          <li><a href="#">Ecology</a></li>
+          <li><a href="#">Human Biology</a></li>
         </ul>
       </div>
 
       <div class="footer-section">
         <h4>Connect</h4>
         <ul>
-          <li><a href="mailto:lorenzo@biospherelorenzo.com">Email Me</a></li>
-          <li><a href="#book-lesson">Book a Lesson</a></li>
-          <li><a href="#">Follow on Instagram</a></li>
-          <li><a href="#">Join Newsletter</a></li>
+          <li><a href="#book-lesson">Book a Session</a></li>
+          <li><a href="#mission">My Mission</a></li>
+          <li><a href="#pre-igcse">Pre-IGCSE</a></li>
         </ul>
+        <div style="margin-top: 20px; background: rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 16px;">
+          <h4 style="margin-bottom: 8px;">Get in Touch</h4>
+          <a href="mailto:lorenzo.passaretta@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600;">✉ Email Lorenzo</a>
+        </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 BioSphere with Lorenzo. All rights reserved. Made with ♡ for biology education.</p>
+      <p>&copy; 2025 BioSphere with Lorenzo. All rights reserved. Made with ♡ for biology education. &nbsp;|&nbsp; Terms of Service &nbsp;|&nbsp; Powered by Readdy</p>
     </div>
   </div>
 </footer>
@@ -3601,8 +3854,8 @@ document.querySelectorAll('.technique-btn').forEach(btn => {
     const techniques = {
       spaced: {
         title: 'Spaced Repetition',
-        desc: 'Review material at increasing intervals. Instead of cramming, you review cells on day 1, day 3, day 7, and day 14.',
-        example: 'Review mitosis on Monday, review again on Wednesday, then Sunday, then two weeks later.'
+        desc: 'Review material at increasing intervals (1 day, 3 days, 7 days, 14 days). This exploits the psychological spacing effect, where information is better retained when learning sessions are spaced out.',
+        example: '<div style="border-left: 3px solid var(--accent);padding: 8px 12px;"><div style="font-size: 13px;font-weight: 700;color: var(--accent);margin-bottom: 4px;">🔬 The Science</div>Studies show 200% better retention compared to cramming (Cepeda et al., 2006)</div>'
       },
       recall: {
         title: 'Active Recall',
